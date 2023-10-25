@@ -42,6 +42,7 @@ export struct DeviceDialog {
                 .fontSize(21)
                 .width('90%')
                 .fontColor(Color.Black)
+
               Image(index === this.selectedIndex ? $r('app.media.checked') : $r('app.media.uncheck'))
                 .width('8%')
                 .objectFit(ImageFit.Contain)
@@ -86,4 +87,5 @@ export struct DeviceDialog {
     .backgroundColor(Color.White)
     .border({ color: Color.White, radius: 20 })
   }
+
 }

@@ -139,24 +139,26 @@ export struct TitleBarComponent {
 
   build() {
     Row() {
-
       Text('医生端-病床数据同步')
         .height('60%')
         .fontSize(30)
         .margin({ left: 20, top: 7 })
+
       Blank().layoutWeight(1)
-        Image($r('app.media.ic_hop'))
-          .height('60%')
-          .margin({ right: 32 })
-          .width('8%')
-          .objectFit(ImageFit.Contain)
-          .onClick(() => {
-            this.showDiainfo()
-          })
+
+      Image($r('app.media.ic_hop'))
+        .height('60%')
+        .margin({ right: 32 })
+        .width('8%')
+        .objectFit(ImageFit.Contain)
+        .onClick(() => {
+          this.showDiainfo()
+        })
     }
     .width('100%')
     .height(this.isLand ? '10%' : '8%')
     .constraintSize({ minHeight: 50 })
     .alignItems(VerticalAlign.Center)
   }
+
 }

@@ -1,50 +1,47 @@
-import distributedDataObject from '@ohos.data.distributedDataObject';
+import distributedDataObject from '@ohos.data.distributedDataObject'
 import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
-import { monitor_id,modifier,icon_color } from  '../util/constant'
+import { monitor_id,modifier, icon_color } from  '../util/constant'
 import gatt_server from '../model/gattserver'
+
 let self
 let localObject:distributedDataObject.DataObject
-
-
 
 @Entry
 @Component
 struct Monitor {
   @State message: string = 'Hello World'
-  @State monitor_info: Object = { heart_beat:70,oximetry:0.98,temperature:36.7 } ;
+  @State monitor_info: Object = { heart_beat:70, oximetry:0.98, temperature:36.7 }
   private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel()
-  private my_gatt_server:gatt_server = new gatt_server();
+  private my_gatt_server:gatt_server = new gatt_server()
 
-
-  //
   // getRandomColor() {
-  //   const letters = '0123456789ABCDEF';
-  //   let color = '0x';
+  //   const letters = '0123456789ABCDEF'
+  //   let color = '0x'
   //   for (let i = 0; i < 6; i++) {
-  //     color += letters[Math.floor(Math.random() * 16)];
+  //     color += letters[Math.floor(Math.random() * 16)]
   //   }
-  //   return color;
+  //   return color
   // }
 
-
   rand_gen(){
-    //60~70
-    let new_heart_beat=(60+Math.random()*10+modifier.heart_beat).toFixed(0);
-    //0.95~0.96
-    let new_oximetry=(0.95+Math.random()*0.01+modifier.oximetry).toFixed(2);
-    //36.1~36.3
-    let new_temperature = (36.1 + Math.random()*0.2+modifier.temperature).toFixed(1);
-    let new_data={heart_beat: new_heart_beat,
-                  oximetry: new_oximetry,
-                  temperature: new_temperature,
-                  icon_color:icon_color
-                  }
-    self.monitor_info=new_data
-    localObject['data']=new_data
+    // 60~70
+    let new_heart_beat = (60 + Math.random() * 10 + modifier.heart_beat).toFixed(0)
+    // 0.95~0.96
+    let new_oximetry = (0.95 + Math.random() * 0.01 + modifier.oximetry).toFixed(2)
+    // 36.1~36.3
+    let new_temperature = (36.1 + Math.random() * 0.2 + modifier.temperature).toFixed(1)
+    let new_data = {
+      heart_beat: new_heart_beat,
+      oximetry: new_oximetry,
+      temperature: new_temperature,
+      icon_color: icon_color
+    }
+    self.monitor_info = new_data
+    localObject['data'] = new_data
   }
 
   async aboutToAppear(){
-    self=this
+    self = this
     let context = getContext(this) as any
     localObject = distributedDataObject.create(context, {
       data:
@@ -53,29 +50,25 @@ struct Monitor {
           oximetry: 0,
           temperature: 0
         }
-    });
+    })
     // 设备1加入sessionId
-    let sessionId = monitor_id;
-    localObject.setSessionId(sessionId);
+    let sessionId = monitor_id
+    localObject.setSessionId(sessionId)
     //定时生成模拟数据
-    setInterval(this.rand_gen, 600);
+    setInterval(this.rand_gen, 600)
     //开启广播
-    this.my_gatt_server.start_gatt_server();
+    this.my_gatt_server.start_gatt_server()
 
   }
-
-
 
   aboutToDisappear(){
     //关闭广播
-    this.my_gatt_server.stop_gatt_server();
+    this.my_gatt_server.stop_gatt_server()
   }
-
 
   build() {
     Row() {
       Column() {
-
         Row() {
           Text('病床端-病床数据采集')
             .width('100%')
@@ -88,7 +81,6 @@ struct Monitor {
           //   .width(55).height(51)
         }
          Divider()
-
         //设备
         Row(){
           Image($r('app.media.ic_monitor'))
@@ -97,8 +89,10 @@ struct Monitor {
             .margin({ left: 50, top: 7 })
 
           Text(`设备ID:  ${monitor_id} `)
-            .fontSize(25).margin({ left: 42 })
-        }.height('16%').width('90%').margin({top:32})
+            .fontSize(25)
+            .margin({ left: 42 })
+        }.height('16%').width('90%')
+        .margin({top:32})
         .borderRadius(12).shadow({radius:16,color:0x20000000})
         //心率
         Row(){
@@ -109,9 +103,12 @@ struct Monitor {
             .fillColor(icon_color)
 
           Text(`心率:  ${this.monitor_info['heart_beat']} bpm`)
-            .fontSize(25).margin({ left: 32 })
-        }.height('16%').width('90%').margin({top:16})
-        .borderRadius(12).shadow({radius:16,color:0x20000000})
+            .fontSize(25)
+            .margin({ left: 32 })
+        }.height('16%').width('90%')
+        .margin({top:16})
+        .borderRadius(12)
+        .shadow({radius:16,color:0x20000000})
         //血氧
         Row(){
           Image($r('app.media.ic_oximetry'))
@@ -121,9 +118,12 @@ struct Monitor {
             .fillColor(icon_color)
 
           Text(`血氧:  ${this.monitor_info['oximetry']*100} %`)
-            .fontSize(25).margin({ left: 32 })
-        }.height('16%').width('90%').margin({top:16})
-        .borderRadius(12).shadow({radius:16,color:0x20000000})
+            .fontSize(25)
+            .margin({ left: 32 })
+        }.height('16%').width('90%')
+        .margin({top:16})
+        .borderRadius(12)
+        .shadow({radius:16,color:0x20000000})
         //温度
         Row(){
           Image($r('app.media.ic_temperature'))
@@ -133,18 +133,19 @@ struct Monitor {
             .fillColor(icon_color)
 
           Text(`温度:  ${this.monitor_info['temperature']} °C`)
-            .fontSize(25).margin({ left: 32 })
-        }.height('16%').width('90%').margin({top:16})
-        .borderRadius(12).shadow({radius:16,color:0x20000000})
-
-
+            .fontSize(25)
+            .margin({ left: 32 })
+        }.height('16%').width('90%')
+        .margin({top:16})
+        .borderRadius(12)
+        .shadow({radius:16,color:0x20000000})
 
         if(false){
         Text(`${this.monitor_info}`)
           .margin({top:20})
           .fontSize(8)
           .fontWeight(FontWeight.Bold)
-          .onClick(()=>{
+          .onClick(() => {
             this.rand_gen()
           })
         }
@@ -155,4 +156,5 @@ struct Monitor {
     .height('100%')
     .alignItems(VerticalAlign.Top)
   }
+
 }

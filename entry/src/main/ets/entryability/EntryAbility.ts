@@ -23,10 +23,10 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     //共享context
     let context = this.context;
-    globalThis.context=context;
+    globalThis.context = context;
     //检查并开启蓝牙
     let state = bluetoothManager.getState();
-    if(state==bluetoothManager.BluetoothState.STATE_OFF) {
+    if(state == bluetoothManager.BluetoothState.STATE_OFF) {
       bluetoothManager.enableBluetooth();
       prompt.showToast({
         message: '蓝牙未开启，自动启动蓝牙..'
@@ -56,4 +56,5 @@ export default class EntryAbility extends UIAbility {
     // Ability has back to background
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
   }
+
 }

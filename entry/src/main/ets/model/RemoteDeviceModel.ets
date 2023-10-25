@@ -115,10 +115,10 @@ export class RemoteDeviceModel {
         switch (data.action) {
           case deviceManager.DeviceStateChangeAction.ONLINE:
             this.changeStateOnline(data.device)
-            break;
+            break
           case deviceManager.DeviceStateChangeAction.READY:
             this.changeState(data.device, deviceManager.DeviceStateChangeAction.READY)
-            break;
+            break
           case deviceManager.DeviceStateChangeAction.CHANGE:
             this.changeState(data.device, deviceManager.DeviceStateChangeAction.CHANGE)
             break
@@ -182,7 +182,7 @@ export class RemoteDeviceModel {
   unregisterDeviceListCallback() {
     try {
       Logger.info(TAG, `stopDeviceDiscovery${SUBSCRIBE_ID}`)
-      this.deviceManager.stopDeviceDiscovery(SUBSCRIBE_ID);
+      this.deviceManager.stopDeviceDiscovery(SUBSCRIBE_ID)
     } catch (error) {
       Logger.error(TAG, `stopDeviceDiscovery throw code:${JSON.stringify(error.code)} message:${error.message}`)
     }
