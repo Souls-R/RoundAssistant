@@ -4,7 +4,7 @@
 
 2023年OH竞赛训练营行业使能赛题参赛作品：题目九病床巡检终端。 基于OpenHarmony 3.2Release开发，通过分布式软总线进行设备配对组网，根据蓝牙距离判断需同步设备并进行数据同步。
 
-具体项目文档见仓库文件项目开发文档.docx。
+具体项目文档见仓库内文件[README.assets/项目开发文档.docx](https://gitee.com/noiatrio/round-assistant/blob/master/README.assets/项目开发文档.docx)，附有演示ppt[README.assets/病床巡检终端.pptx](https://gitee.com/noiatrio/round-assistant/blob/master/README.assets/病床巡检终端.pptx)。
 
 ## 演示视频
 
