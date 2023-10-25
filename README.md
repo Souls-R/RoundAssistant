@@ -6,6 +6,16 @@
 
 具体项目文档见仓库文件项目开发文档.docx。
 
+## 演示视频
+
+- 设备组网并信任
+
+<video src=".\README.assets\设备组网并添加信任.mp4"></video>
+
+- 模拟巡检
+
+<video src=".\README.assets\模拟巡检.mp4"></video>
+
 ## 概要说明
 
 ### 背景
@@ -70,15 +80,15 @@
 
 1. 设备间分布式组网：使用了`@ohos.distributedHardware.deviceManager`解决，该模块提供分布式设备管理能力。系统应用可调用接口实现如下功能：
    - 注册和解除注册设备上下线变化监听
-
+   
    - 发现周边不可信设备
-
+   
    - 认证和取消认证设备
-
+   
    - 查询可信设备列表
-
+   
    - 查询本地设备信息，包括设备名称，设备类型和设备标识
-
+   
    - 发布设备发现
 2. 蓝牙距离判断：使用了`@ohos.bluetoothManager `解决，该模块提供了基础的传统蓝牙能力以及BLE的扫描、广播等功能。
 3. 数据同步：使用了`@ohos.data.distributedDataObject`解决，该模块提供管理基本数据对象的相关能力，包括创建、查询、删除、修改、订阅等；同时支持相同应用多设备间的分布式数据对象协同能力。
@@ -146,14 +156,14 @@
 
 #### 功能模块
 
-- 分布式设备管理模块：`RemoteDeviceModel.ets`；
+-  分布式设备管理模块：`RemoteDeviceModel.ets`；
 
   导入了分布式设备管理库`import deviceManager from '@ohos.distributedHardware.deviceManager'`;
 
   创建了`DeviceManager`类对象，`deviceList`保存认证设备列表，`discoverList`保存发现设备列表；
 
   主要使用了`deviceManager`下的`createDeviceManager()`方法,以及`DeviceManager`类下的`startDeviceDiscovery()`,`getTrustedDeviceListSync()`,`on('deviceStateChange', ())`,`on('deviceFound', ())`,`on('discoverFail', ())`,`on('serviceDie', ())`,`authenticateDevice()`等方法，实现了分布式设备组网。
-
+  
 - 分布式数据对象模块：在`Monitor.ets`,`Rounder.ets`都有使用；
 
   导入了分布式数据对象库`import distributedDataObject from '@ohos.data.distributedDataObject'`;
@@ -197,24 +207,24 @@
 蓝牙测距功能实现：
 
 1. 设备配置：
-   -  病床设备端将自身设置为蓝牙低功耗（BLE）设备，并启用GATT服务器功能。
-   -  医生设备端作为中央设备，启用蓝牙扫描功能，并配置为GATT客户端。
+     -  病床设备端将自身设置为蓝牙低功耗（BLE）设备，并启用GATT服务器功能。
+     - 医生设备端作为中央设备，启用蓝牙扫描功能，并配置为GATT客户端。
 
 2. 广播数据包：
-   -  病床设备端使用GATT服务器广播数据包，其中包含以下字段：
-   -  制造商标识（Manufacturer ID）：用于识别设备制造商，此项目使用的设备制造商id为0x4444，与serviceUUID一起用来协助过滤出病床设备。
-   -  服务标识（Service ID）：用于标识设备提供的特定服务。
-   -  添加服务，此项目使用的serviceUUID为 `00001889-0000-1000-8000-00805f9b34fb`，即0x1889，对应的serviceValue表示设备的id。
+      -  病床设备端使用GATT服务器广播数据包，其中包含以下字段：
+      - 制造商标识（Manufacturer ID）：用于识别设备制造商，此项目使用的设备制造商id为0x4444，与serviceUUID一起用来协助过滤出病床设备。
+      - 服务标识（Service ID）：用于标识设备提供的特定服务。
+      - 添加服务，此项目使用的serviceUUID为 `00001889-0000-1000-8000-00805f9b34fb`，即0x1889，对应的serviceValue表示设备的id。
 
 3. 医生设备端扫描与过滤：
-   -  医生设备端启动蓝牙扫描功能，以搜索周围的BLE设备。
-   -  扫描到的设备广播报文中，医生设备端过滤出具有匹配的制造商标识和服务标识的设备。
+     -  医生设备端启动蓝牙扫描功能，以搜索周围的BLE设备。
+     - 扫描到的设备广播报文中，医生设备端过滤出具有匹配的制造商标识和服务标识的设备。
 
 4. 获取、解析广播报文，确定设备距离：
-   - 医生设备端通过蓝牙扫描获取到的广播报文中，定位到病床设备端的广播数据包。
-   - 医生设备端解析病床设备端的广播数据包，提取出相关字段。
-   - 使用已提取的设备标识符字段，医生设备端可以确定病床设备端与自身的距离。
-     基于信号强度指示（RSSI）值可以进行距离的确定。
+     - 医生设备端通过蓝牙扫描获取到的广播报文中，定位到病床设备端的广播数据包。
+     - 医生设备端解析病床设备端的广播数据包，提取出相关字段。
+     - 使用已提取的设备标识符字段，医生设备端可以确定病床设备端与自身的距离。
+      基于信号强度指示（RSSI）值可以进行距离的确定。
 
 通过以上步骤，蓝牙测距功能可以实现病床设备端与医生设备端之间的距离测量。
 
