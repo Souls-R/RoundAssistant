@@ -1,0 +1,72 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "RoundAssistant"
+    },
+    {
+      "name": "device_name",
+      "value": "device_name"
+    },
+    {
+      "name": "device_id",
+      "value": "device_id"
+    },
+    {
+      "name": "device_state",
+      "value": "device_state"
+    },
+    {
+      "name": "reason",
+      "value": "ble"
+    },
+    {
+      "name": "title",
+      "value": "title"
+    },
+    {
+      "name": "description_mainability",
+      "value": "des"
+    },
+    {
+      "name": "add",
+      "value": "add"
+    },
+    {
+      "name": "delete",
+      "value": "delete"
+    },
+    {
+      "name": "checked",
+      "value": "checked"
+    },
+    {
+      "name": "uncheck",
+      "value": "uncheck"
+    },
+    {
+      "name": "check_device",
+      "value": "check_device"
+    },
+    {
+      "name": "cancel",
+      "value": "cancel"
+    },
+    {
+      "name": "choiceDevice",
+      "value": "选择设备"
+    },
+    {
+      "name": "localhost",
+      "value": "本机（取消协作）"
+    }
+  ]
+}
