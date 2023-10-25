@@ -6,6 +6,8 @@
 
 具体项目文档见仓库内文件[README.assets/项目开发文档.docx](https://gitee.com/noiatrio/round-assistant/blob/master/README.assets/项目开发文档.docx)，附有演示ppt[README.assets/病床巡检终端.pptx](https://gitee.com/noiatrio/round-assistant/blob/master/README.assets/病床巡检终端.pptx)。
 
+hap安装包见仓库发行版界面[RoundAssistant 发行版](https://gitee.com/noiatrio/round-assistant/releases)。
+
 ## 演示视频
 
 - 设备组网并信任
