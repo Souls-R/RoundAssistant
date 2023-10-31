@@ -46,19 +46,19 @@ struct Welcome {
             .width(55).height(70)
             .margin({right:32})
 
-          Text('巡检终端')
+          Text($r('app.string.welcome_title'))
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
         }.margin({top:100})
 
         Button({ type: ButtonType.Normal, stateEffect: true }) {
           Column() {
-            Text('病床端')
+            Text($r('app.string.welcome_bedside'))
               .fontSize(45)
               .fontColor(0xffffff)
               .margin({ left: 12 ,top:16})
               .letterSpacing(6)
-            Text('作为病床端侧设备，收集病人的心率、血氧、体温等生理数据')
+            Text($r('app.string.welcome_bedside_des'))
               .fontSize(16)
               .fontColor(0xbfffffff)
               .margin({ left: 16,top:16,right:16 })
@@ -76,12 +76,12 @@ struct Welcome {
 
         Button({ type: ButtonType.Normal, stateEffect: true }) {
           Column() {
-            Text('医生端')
+            Text($r('app.string.welcome_doctorside'))
               .fontSize(45)
               .fontColor(0xffffff)
               .margin({ left: 12 ,top:16})
               .letterSpacing(6)
-            Text('作为医生手持设备，根据距离判断需同步设备并进行数据同步')
+            Text($r('app.string.welcome_doctorside_des'))
               .fontSize(16)
               .fontColor(0xbfffffff)
               .margin({ left: 16,top:16,right:16 })

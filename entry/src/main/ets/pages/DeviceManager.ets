@@ -66,7 +66,7 @@ struct DeviceManager {
         Column() {
           Stack() {
             Row() {
-              TitleBar({ title: '设备管理' })
+              TitleBar({ title: $r('app.string.devicemanagement') })
             }
           }.width('100%')
 
@@ -87,7 +87,7 @@ struct DeviceManager {
             .height(48)
 
             Row() {
-              Text('允许被发现')
+              Text($r('app.string.allowed_discovered'))
                 .fontSize(16)
                 .fontColor('#182431')
                 .fontFamily('HarmonyHeiTi-Medium')
@@ -114,7 +114,7 @@ struct DeviceManager {
 
           Column() {
             Row() {
-              Text('已信任设备')
+              Text($r('app.string.trusted_devices'))
                 .fontSize(14)
                 .fontColor('#182431')
                 .fontFamily('HarmonyHeiTi-Medium')
@@ -124,7 +124,7 @@ struct DeviceManager {
 
               Blank()
 
-              Text('刷新')
+              Text($r('app.string.refresh'))
                 .fontSize(14)
                 .fontColor('#007DFF')
                 .fontFamily('HarmonyHeiTi-Medium')
@@ -168,7 +168,7 @@ struct DeviceManager {
 
           Column() {
             Row() {
-              Text('可用设备')
+              Text($r('app.string.usable_devices'))
                 .fontSize(14)
                 .fontColor('#182431')
                 .fontFamily('HarmonyHeiTi-Medium')
@@ -178,7 +178,7 @@ struct DeviceManager {
 
               Blank()
 
-              Text(this.isDiscovering == false ? ('发现') : ('停止'))
+              Text(this.isDiscovering == false ? ($r('app.string.discover')) : ($r('app.string.stop')))
                 .fontSize(14)
                 .fontColor(this.isDiscovering == false ? '#007DFF' : '#FA2A2D')
                 .lineHeight(19)

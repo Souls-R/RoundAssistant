@@ -14,19 +14,15 @@
     },
     {
       "name": "device_name",
-      "value": "设备名称："
+      "value": "设备名称"
     },
     {
       "name": "device_id",
-      "value": "设备ID："
+      "value": "设备ID"
     },
     {
       "name": "device_state",
-      "value": "设备状态："
-    },
-    {
-      "name": "choiceDevice",
-      "value": "选择设备"
+      "value": "设备状态"
     },
     {
       "name": "reason",
@@ -47,6 +43,90 @@
     {
       "name": "cancel",
       "value": "取消"
+    },
+    {
+      "name": "confirm",
+      "value": "确定"
+    },
+    {
+      "name": "welcome_title",
+      "value": "巡检终端"
+    },
+    {
+      "name": "welcome_bedside",
+      "value": "病床端"
+    },
+    {
+      "name": "welcome_bedside_des",
+      "value": "作为病床端侧设备，收集病人的心率、血氧、体温等生理数据"
+    },
+    {
+      "name": "welcome_doctorside",
+      "value": "医生端"
+    },
+    {
+      "name": "welcome_doctorside_des",
+      "value": "作为医生手持设备，根据距离判断需同步设备并进行数据同步"
+    },
+    {
+      "name": "devicemanagement",
+      "value": "设备管理"
+    },
+    {
+      "name": "allowed_discovered",
+      "value": "允许被发现"
+    },
+    {
+      "name": "trusted_devices",
+      "value": "已信任设备"
+    },
+    {
+      "name": "refresh",
+      "value": "刷新"
+    },
+    {
+      "name": "usable_devices",
+      "value": "可用设备"
+    },
+    {
+      "name": "discover",
+      "value": "发现"
+    },
+    {
+      "name": "stop",
+      "value": "停止"
+    },
+    {
+      "name": "page_title_monitor",
+      "value": "病床端-病床数据采集"
+    },
+    {
+      "name": "page_title_rounder",
+      "value": "医生端-病床数据同步"
+    },
+    {
+      "name": "temperature",
+      "value": "温度"
+    },
+    {
+      "name": "oximetry",
+      "value": "血氧"
+    },
+    {
+      "name": "heart_beat",
+      "value": "心率"
+    },
+    {
+      "name": "sync_device_id",
+      "value": "同步设备ID"
+    },
+    {
+      "name": "trusted",
+      "value": "已信任"
+    },
+    {
+      "name": "is_delete",
+      "value": "是否删除 "
     }
   ]
 }

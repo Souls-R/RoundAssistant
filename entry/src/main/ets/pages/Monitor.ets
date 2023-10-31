@@ -10,8 +10,8 @@ let localObject:distributedDataObject.DataObject
 struct Monitor {
   @State message: string = 'Hello World'
   @State monitor_info: Object = { heart_beat:70, oximetry:0.98, temperature:36.7 }
+  @State locale_str:Object = { device_id:'device_id', heart_beat:'heart_beat', oximetry:'oximetry', temperature:'temperature' };
   private my_gatt_server:gatt_server = new gatt_server()
-
   // getRandomColor() {
   //   const letters = '0123456789ABCDEF'
   //   let color = '0x'
@@ -41,6 +41,12 @@ struct Monitor {
   async aboutToAppear(){
     self = this
     let context = getContext(this) as any
+    //locale
+    this.locale_str['device_id']=context.resourceManager.getStringSync($r('app.string.device_id'))
+    this.locale_str['heart_beat']=context.resourceManager.getStringSync($r('app.string.heart_beat'))
+    this.locale_str['temperature']=context.resourceManager.getStringSync($r('app.string.temperature'))
+    this.locale_str['oximetry']=context.resourceManager.getStringSync($r('app.string.oximetry'))
+    //创建分布式数据对象
     localObject = distributedDataObject.create(context, {
       data:
         {
@@ -68,7 +74,7 @@ struct Monitor {
     Row() {
       Column() {
         Row() {
-          Text('病床端-病床数据采集')
+          Text($r('app.string.page_title_monitor'))
             .width('100%')
             .height('8%')
             .constraintSize({ minHeight: 50 })
@@ -86,7 +92,7 @@ struct Monitor {
             .scale({x : 1.5,y : 1.5,})
             .margin({ left: 50, top: 7 })
 
-          Text(`设备ID:  ${monitor_id} `)
+          Text(`${this.locale_str['device_id']}:  ${monitor_id} `)
             .fontSize(25)
             .margin({ left: 42 })
         }.height('16%').width('90%')
@@ -100,7 +106,7 @@ struct Monitor {
             .margin({ left: 50, top: 7 })
             .fillColor(icon_color)
 
-          Text(`心率:  ${this.monitor_info['heart_beat']} bpm`)
+          Text(`${this.locale_str['heart_beat']} :  ${this.monitor_info['heart_beat']} bpm`)
             .fontSize(25)
             .margin({ left: 32 })
         }.height('16%').width('90%')
@@ -115,7 +121,7 @@ struct Monitor {
             .margin({ left: 50, top: 7 })
             .fillColor(icon_color)
 
-          Text(`血氧:  ${this.monitor_info['oximetry']*100} %`)
+          Text(`${this.locale_str['oximetry']} :  ${this.monitor_info['oximetry']*100} %`)
             .fontSize(25)
             .margin({ left: 32 })
         }.height('16%').width('90%')
@@ -130,7 +136,7 @@ struct Monitor {
             .margin({ left: 50, top: 7 })
             .fillColor(icon_color)
 
-          Text(`温度:  ${this.monitor_info['temperature']} °C`)
+          Text(`${this.locale_str['temperature']} :  ${this.monitor_info['temperature']} °C`)
             .fontSize(25)
             .margin({ left: 32 })
         }.height('16%').width('90%')

@@ -28,7 +28,8 @@ struct DeleteDeviceDialog {
   private isDelete: string = '';
 
   aboutToAppear() {
-    this.isDelete = '是否删除'
+    let context = getContext(this) as any
+    this.isDelete = context.resourceManager.getStringSync($r('app.string.is_delete').id);
   }
 
   build() {
@@ -150,7 +151,7 @@ export struct ListDeviceView {
         Blank()
 
         Row() {
-          Text(('已认证'))
+          Text($r('app.string.trusted'))
             .fontColor('#182431')
             .fontSize(14)
             .opacity(0.6)

@@ -15,6 +15,118 @@
     {
       "name": "cancel",
       "value": "cancel"
+    },
+    {
+      "name": "confirm",
+      "value": "confirm"
+    },
+    {
+      "name": "device_name",
+      "value": "Device Name"
+    },
+    {
+      "name": "device_id",
+      "value": "Device ID"
+    },
+    {
+      "name": "device_state",
+      "value": "Device State"
+    },
+    {
+      "name": "reason",
+      "value": "sync bed monitor data"
+    },
+    {
+      "name": "title",
+      "value": "title"
+    },
+    {
+      "name": "add",
+      "value": "add"
+    },
+    {
+      "name": "delete",
+      "value": "delete"
+    },
+    {
+      "name": "welcome_title",
+      "value": "Rounder"
+    },
+    {
+      "name": "welcome_bedside",
+      "value": "BedSide"
+    },
+    {
+      "name": "welcome_bedside_des",
+      "value": "As a bedside device, collects physiological data such as heart rate, oximetry, temperature, etc."
+    },
+    {
+      "name": "welcome_doctorside",
+      "value": "DoctorSide"
+    },
+    {
+      "name": "devicemanagement",
+      "value": "Device Management"
+    },
+    {
+      "name": "allowed_discovered",
+      "value": "Allowed Discovered"
+    },
+    {
+      "name": "trusted_devices",
+      "value": "Trusted Devices"
+    },
+    {
+      "name": "refresh",
+      "value": "Refresh"
+    },
+    {
+      "name": "usable_devices",
+      "value": "Usable Devices"
+    },
+    {
+      "name": "welcome_doctorside_des",
+      "value": "As a handheld device for doctors, it can synchronise data with the nearest device."
+    },
+    {
+      "name": "sync_device_id",
+      "value": "Sync Device ID"
+    },
+    {
+      "name": "heart_beat",
+      "value": "Heart Beat"
+    },
+    {
+      "name": "oximetry",
+      "value": "Oximetry"
+    },
+    {
+      "name": "temperature",
+      "value": "Temperature"
+    },
+    {
+      "name": "page_title_rounder",
+      "value": "DoctorSide - bed data synchronisation"
+    },
+    {
+      "name": "page_title_monitor",
+      "value": "Bedside - bed data collection"
+    },
+    {
+      "name": "stop",
+      "value": "Stop"
+    },
+    {
+      "name": "discover",
+      "value": "Discover"
+    },
+    {
+      "name": "trusted",
+      "value": "Trusted"
+    },
+    {
+      "name": "is_delete",
+      "value": "Is Delete "
     }
   ]
 }

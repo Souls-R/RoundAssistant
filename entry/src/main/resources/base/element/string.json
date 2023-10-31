@@ -26,15 +26,11 @@
     },
     {
       "name": "reason",
-      "value": "ble"
+      "value": "sync data"
     },
     {
       "name": "title",
       "value": "title"
-    },
-    {
-      "name": "description_mainability",
-      "value": "des"
     },
     {
       "name": "add",
@@ -45,24 +41,92 @@
       "value": "delete"
     },
     {
-      "name": "checked",
-      "value": "checked"
-    },
-    {
-      "name": "uncheck",
-      "value": "uncheck"
-    },
-    {
-      "name": "check_device",
-      "value": "check_device"
-    },
-    {
       "name": "cancel",
       "value": "cancel"
     },
     {
-      "name": "choiceDevice",
-      "value": "choose device"
+      "name": "confirm",
+      "value": "confirm"
+    },
+    {
+      "name": "welcome_title",
+      "value": "Rounder"
+    },
+    {
+      "name": "welcome_bedside",
+      "value": "BedSide"
+    },
+    {
+      "name": "welcome_bedside_des",
+      "value": "As a bedside device, collects physiological data such as heart rate, oximetry, temperature, etc."
+    },
+    {
+      "name": "welcome_doctorside",
+      "value": "DoctorSide"
+    },
+    {
+      "name": "welcome_doctorside_des",
+      "value": "As a handheld device for doctors, it can synchronise data with the nearest device."
+    },
+    {
+      "name": "devicemanagement",
+      "value": "Device Management"
+    },
+    {
+      "name": "allowed_discovered",
+      "value": "Allowed Discovered"
+    },
+    {
+      "name": "trusted_devices",
+      "value": "Trusted Devices"
+    },
+    {
+      "name": "refresh",
+      "value": "Refresh"
+    },
+    {
+      "name": "usable_devices",
+      "value": "Usable Devices"
+    },
+    {
+      "name": "discover",
+      "value": "Discover"
+    },
+    {
+      "name": "stop",
+      "value": "Stop"
+    },
+    {
+      "name": "page_title_monitor",
+      "value": "Bedside - bed data collection"
+    },
+    {
+      "name": "page_title_rounder",
+      "value": "DoctorSide - bed data synchronisation"
+    },
+    {
+      "name": "temperature",
+      "value": "temperature"
+    },
+    {
+      "name": "oximetry",
+      "value": "oximetry"
+    },
+    {
+      "name": "heart_beat",
+      "value": "heart beat"
+    },
+    {
+      "name": "sync_device_id",
+      "value": "Sync Device ID"
+    },
+    {
+      "name": "trusted",
+      "value": "Trusted"
+    },
+    {
+      "name": "is_delete",
+      "value": "Is Delete "
     }
   ]
 }

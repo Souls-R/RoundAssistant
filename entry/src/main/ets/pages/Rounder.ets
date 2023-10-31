@@ -29,6 +29,7 @@ struct Rounder {
   @State isDistributed: boolean = false
   @State cur_target:string = ''
   @State fill_color:number = 0xff0000
+  @State locale_str:Object = { device_id:'sync_device_id', heart_beat:'heart_beat', oximetry:'oximetry', temperature:'temperature' };
   private ble_scanner:ble_scanner = new ble_scanner()
   private max_id:string = ''
   private last_max_id:string = ''
@@ -36,6 +37,11 @@ struct Rounder {
 
   async aboutToAppear() {
     let context = getContext(this) as any
+    //locale
+    this.locale_str['sync_device_id']=context.resourceManager.getStringSync($r('app.string.sync_device_id'))
+    this.locale_str['heart_beat']=context.resourceManager.getStringSync($r('app.string.heart_beat'))
+    this.locale_str['temperature']=context.resourceManager.getStringSync($r('app.string.temperature'))
+    this.locale_str['oximetry']=context.resourceManager.getStringSync($r('app.string.oximetry'))
     // 和设备1协同的设备2加入同一个session
     // let sessionId = '1'
     // 创建对象，该对象包含4个属性类型：string、number、boolean和Object
@@ -125,7 +131,7 @@ struct Rounder {
     Column() {
 
       Row() {
-        Text('医生端-病床数据同步')
+        Text($r('app.string.page_title_rounder'))
           .width('100%')
           .height('8%')
           .constraintSize({ minHeight: 50 })
@@ -143,7 +149,7 @@ struct Rounder {
           .scale({x : 1.5,y : 1.5,})
           .margin({ left: 50, top: 7 })
 
-        Text(`同步设备ID:  ${String(this.cur_target)} `)
+        Text( `${this.locale_str['sync_device_id']} :  ${String(this.cur_target)} `)
           .fontSize(25)
           .margin({ left: 42 })
       }.height('16%').width('90%')
@@ -161,7 +167,7 @@ struct Rounder {
           .margin({ left: 50, top: 7 })
           .fillColor(this.fill_color)
 
-        Text(`心率:  ${this.rounder_info['heart_beat']} bpm`)
+        Text(`${this.locale_str['heart_beat']} :  ${this.rounder_info['heart_beat']} bpm`)
           .fontSize(25)
           .margin({ left: 32 })
       }.height('16%').width('90%')
@@ -176,7 +182,7 @@ struct Rounder {
           .margin({ left: 50, top: 7 })
           .fillColor(this.fill_color)
 
-        Text(`血氧:  ${this.rounder_info['oximetry']*100} %`)
+        Text(`${this.locale_str['oximetry']} :  ${this.rounder_info['oximetry']*100} %`)
           .fontSize(25)
           .margin({ left: 32 })
       }.height('16%').width('90%')
@@ -191,7 +197,7 @@ struct Rounder {
           .margin({ left: 50, top: 7 })
           .fillColor(this.fill_color)
 
-        Text(`温度:  ${this.rounder_info['temperature']} °C`)
+        Text(`${this.locale_str['temperature']} :  ${this.rounder_info['temperature']} °C`)
           .fontSize(25).margin({ left: 32 })
       }.height('16%').width('90%')
       .margin({top:16})
