@@ -18,6 +18,11 @@ hap安装包见仓库发行版界面[`RoundAssistant 发行版`](https://gitee.c
 
 [README.assets/模拟巡检.mp4](https://gitee.com/noiatrio/round-assistant/blob/master/README.assets/模拟巡检.mp4)
 
+## 图片预览
+
+<img src="README.assets/欢迎界面_zh.jpeg" alt="欢迎_zh" style="zoom:25%;" /><img src="README.assets/医生端_zh.jpeg" alt="医生端_zh" style="zoom:25%;" /><img src="README.assets/设备管理_zh.jpeg" alt="设备管理_zh" style="zoom:25%;" />
+
+
 ## 概要说明
 
 ### 背景
