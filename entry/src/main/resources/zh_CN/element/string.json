@@ -23,6 +23,30 @@
     {
       "name": "device_state",
       "value": "设备状态："
+    },
+    {
+      "name": "choiceDevice",
+      "value": "选择设备"
+    },
+    {
+      "name": "reason",
+      "value": "使用分布式能力同步病床数据"
+    },
+    {
+      "name": "title",
+      "value": "标题"
+    },
+    {
+      "name": "add",
+      "value": "添加"
+    },
+    {
+      "name": "delete",
+      "value": "删除"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
     }
   ]
 }

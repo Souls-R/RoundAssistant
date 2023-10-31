@@ -62,11 +62,7 @@
     },
     {
       "name": "choiceDevice",
-      "value": "选择设备"
-    },
-    {
-      "name": "localhost",
-      "value": "本机（取消协作）"
+      "value": "choose device"
     }
   ]
 }

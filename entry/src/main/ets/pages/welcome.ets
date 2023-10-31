@@ -26,6 +26,21 @@ struct Welcome {
   build() {
     Row() {
       Column() {
+
+        Column() {
+          Image($r('app.media.ic_more'))
+            .width(32).height(32)
+            .margin({right:24,top:0})
+            .onClick(()=>{
+              router.pushUrl ({
+                url: 'pages/DeviceManager',
+              });
+            })
+        }
+        .width('100%')
+        .alignItems(HorizontalAlign.End)
+
+
         Row() {
           Image($r('app.media.ic_health'))
             .width(55).height(70)
@@ -54,7 +69,7 @@ struct Welcome {
         .margin({top:120})
         .borderRadius(8)
         .onClick(()=>{
-          router.push ({
+          router.replaceUrl ({
             url: 'pages/Monitor',
           });
         })
@@ -77,7 +92,7 @@ struct Welcome {
         .margin({top:20})
         .borderRadius(8)
         .onClick(()=>{
-          router.push ({
+          router.replaceUrl ({
             url: 'pages/Rounder',
           });
         })

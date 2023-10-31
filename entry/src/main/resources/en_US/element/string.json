@@ -11,6 +11,10 @@
     {
       "name": "EntryAbility_label",
       "value": "RoundAssistant"
+    },
+    {
+      "name": "cancel",
+      "value": "cancel"
     }
   ]
 }

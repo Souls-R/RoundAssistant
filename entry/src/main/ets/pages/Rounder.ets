@@ -14,8 +14,6 @@
  */
 import distributedDataObject from '@ohos.data.distributedDataObject'
 import ble_scanner from  '../model/blescanner'
-import { TitleBarComponent } from '../common/TitleBarComponent'
-import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
 import Logger from '../util/Logger'
 
 let debounce_timer = null
@@ -31,7 +29,6 @@ struct Rounder {
   @State isDistributed: boolean = false
   @State cur_target:string = ''
   @State fill_color:number = 0xff0000
-  private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel()
   private ble_scanner:ble_scanner = new ble_scanner()
   private max_id:string = ''
   private last_max_id:string = ''
@@ -126,24 +123,18 @@ struct Rounder {
 
   build() {
     Column() {
-      TitleBarComponent({
-        isLand: true,
-        startAbilityCallBack: () => {},
-        remoteDeviceModel: this.remoteDeviceModel,
-        isDistributed: $isDistributed,
-      })
-      //
-      // Row() {
-      //   Text('医生端-病床数据同步')
-      //     .width('100%')
-      //     .height('8%')
-      //     .constraintSize({ minHeight: 50 })
-      //     .fontSize(25)
-      //     .margin({ left: 20,top: 7 })
-      //   //
-      //   // Image($r('app.media.ic_more'))
-      //   //   .width(55).height(51)
-      // }
+
+      Row() {
+        Text('医生端-病床数据同步')
+          .width('100%')
+          .height('8%')
+          .constraintSize({ minHeight: 50 })
+          .fontSize(25)
+          .margin({ left: 20,top: 7 })
+
+        // Image($r('app.media.ic_more'))
+        //   .width(55).height(51)
+      }
       Divider()
       // 设备
       Row(){
@@ -214,12 +205,6 @@ struct Rounder {
         .fontSize('25vp')
       }
 
-    }
-  }
-
-  onDestroy() {
-    if (this.remoteDeviceModel !== null) {
-      this.remoteDeviceModel.unregisterDeviceListCallback()
     }
   }
 

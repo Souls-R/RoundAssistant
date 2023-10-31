@@ -1,5 +1,4 @@
 import distributedDataObject from '@ohos.data.distributedDataObject'
-import { RemoteDeviceModel } from '../model/RemoteDeviceModel'
 import { monitor_id,modifier, icon_color } from  '../util/constant'
 import gatt_server from '../model/gattserver'
 
@@ -11,7 +10,6 @@ let localObject:distributedDataObject.DataObject
 struct Monitor {
   @State message: string = 'Hello World'
   @State monitor_info: Object = { heart_beat:70, oximetry:0.98, temperature:36.7 }
-  private remoteDeviceModel: RemoteDeviceModel = new RemoteDeviceModel()
   private my_gatt_server:gatt_server = new gatt_server()
 
   // getRandomColor() {
