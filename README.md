@@ -117,8 +117,8 @@ hap安装包见仓库发行版界面[`RoundAssistant 发行版`](https://gitee.c
   │
   ├─ets
   │  ├─common
-  │  │      DeviceDialog.ets    //设备显示弹窗类
-  │  │      TitleBarComponent.ets   //包含设备管理的标题栏组件
+  │  │      ListDeviceView.ets    //单一设备渲染  
+  │  │      TitleBarComponent.ets   //包含设备管理页面入口的标题栏组件  
   │  │
   │  ├─entryability
   │  │      EntryAbility.ts  //程序入口类
@@ -126,9 +126,11 @@ hap安装包见仓库发行版界面[`RoundAssistant 发行版`](https://gitee.c
   │  ├─model
   │  │      blescanner.ts 	 //ble扫描类
   │  │      gattserver.ets 	 //gatt server类
+  │  │      data_collector.ets  //数据接口
   │  │      RemoteDeviceModel.ets  //分布式设备管理类
   │  │
   │  ├─pages
+  │  │      DeviceManager.ets  //设备管理页  
   │  │      Monitor.ets  //病床端主页
   │  │      Rounder.ets  //医生端主页
   │  │      welcome.ets  //首页
@@ -136,7 +138,6 @@ hap安装包见仓库发行版界面[`RoundAssistant 发行版`](https://gitee.c
   │  └─util
   │          constant.ets //常量
   │          Logger.ts    //日志类
-  │          Permission.ts //请求权限类
   │
   └─resources
       ├─base
@@ -157,9 +158,8 @@ hap安装包见仓库发行版界面[`RoundAssistant 发行版`](https://gitee.c
 
 - 首页：`welcome.ets`；在`aboutTOAppear`先进行权限验证；在UI中提供两个按钮实现跳转病床端主页或医生端主页。
 - 病床端主页：`Monitor.ets`；创建了`distributedDataObject`类对象进行数据同步；在`aboutTOAppear()`开启了BLE蓝牙广播；在`aboutTODisppear()`中进行关闭广播。
-- 医生端主页：`Rounder.ets`；创建了`distributedDataObject`类对象进行数据同步，还创建了`remoteDeviceModel`进行设备管理；在`aboutTOAppear()`中进行蓝牙扫描，并对扫描事件进行监听，在信号最强的设备发生改变时更改同步数据的设备，同时实现了防抖动的设计；在UI中使用了标题栏组件，并进行了当前同步数据的显示；在`onDestroy()`中进行了`remoteDeviceModel`的各监听的停止。
-- 标题栏组件：`TitleBarComponent.ets`；真正使用了`remoteDeviceModel`，并创建了`deviceList`来保存当前的设备列表；在UI中使用了按钮，当按下后会进行`remoteDeviceModel`类中包含`createDeviceManager()`等的注册函数，并进行回调了回调函数的传入来更新`deviceList`，通过`deviceList`并使用`DeviceDialog.ets`来先渲染显示弹窗，当点击设备时可进行设备的认证。
-- 设备显示弹窗组件：`DeviceDialog.ets`；按列表显示当前发现设备列表，并将用户点击操作反馈给标题栏组件，调用对应函数。
+- 医生端主页：`Rounder.ets`；提供了挑战至设备管理页的按钮；创建了`distributedDataObject`类对象进行数据同步；在`aboutToAppear()`中进行蓝牙扫描，并对扫描事件进行监听，在信号最强的设备发生改变时更改同步数据的设备，同时实现了防抖动的设计；在UI中使用了标题栏组件，并进行了当前同步数据的显示；在`onDestroy()`中进行了`remoteDeviceModel`的各监听的停止。
+- 设备管理页：` DeviceManager.ets `；在`aboutToAppear()`中进行了`RemoteDeviceModel.ets`的创建，在`build()`中实现了发现设备列表的显示，以及已认证设备列表的显示，除此之外，通过该页面上的交互，还可以调用设备管理模型中对应函数，实现允许本机被发现，不允许本机被发现，进行设备发现，停止设备发现，进行设备认证，取消设备认证的操作。
 
 #### 功能模块
 
@@ -167,7 +167,7 @@ hap安装包见仓库发行版界面[`RoundAssistant 发行版`](https://gitee.c
 
   导入了分布式设备管理库`import deviceManager from '@ohos.distributedHardware.deviceManager'`;
 
-  创建了`DeviceManager`类对象，`deviceList`保存认证设备列表，`discoverList`保存发现设备列表；
+  创建了`DeviceManager`类对象，`trustedDeviceList`保存认证设备列表，`discoverList`保存发现设备列表；
 
   主要使用了`deviceManager`下的`createDeviceManager()`方法,以及`DeviceManager`类下的`startDeviceDiscovery()`,`getTrustedDeviceListSync()`,`on('deviceStateChange', ())`,`on('deviceFound', ())`,`on('discoverFail', ())`,`on('serviceDie', ())`,`authenticateDevice()`等方法，实现了分布式设备组网。
   
@@ -191,7 +191,6 @@ hap安装包见仓库发行版界面[`RoundAssistant 发行版`](https://gitee.c
 
 - 日志模块：`Logger.ts`；进行日志的打印。
 - 常量模块：`constant.ets`；保存一些常量。
-- 请求权限模块：`Permission.ts`；弹窗向用户请求对应权限。
 
 ## 项目特性
 
@@ -202,6 +201,7 @@ hap安装包见仓库发行版界面[`RoundAssistant 发行版`](https://gitee.c
 - **简明易懂：** 系统提供了简单直观的操作界面，使用户能够快速上手并轻松使用应用。界面布局清晰，功能按钮和菜单应有明确的标识和描述，以便用户能够准确理解和使用各项功能。
 - **可视化：** 应用提供便于操作的UI界面，提供折线图功能方便查阅数据，能直观的便于用户查看，同时在切换设备时，应用能够切换显示图标颜色提示用户当前设备的改变。
 - **实时刷新：** 使用ArkTS语言的`@State`装饰器以及低延迟的数据同步，应用能够实时获取和更新病人的生理数据，并在界面上进行实时刷新。当病人的数据发生变化时，系统应立即更新相应的数据显示，以便医生能够及时获取最新的数据状态。并且实时刷新的速度较快，保证了数据的实时性和准确性。
+- **心率图显示**：特别的，对于心率，我们绘制了心率曲线，能看到一段时间病人的心率变化情况，便于医生做出判断。
 
 ### 防抖动设计
 
@@ -234,6 +234,10 @@ hap安装包见仓库发行版界面[`RoundAssistant 发行版`](https://gitee.c
       基于信号强度指示（RSSI）值可以进行距离的确定。
 
 通过以上步骤，蓝牙测距功能可以实现病床设备端与医生设备端之间的距离测量。
+
+### 扩展性
+
+本项目对数据采集提供接口，数据采集模块接口采用依赖注入模式，位于`data_c.ets`中，只需根据不同设备实现不同的collector即可。目前实现了模拟采集数据的collector，即随机生成数据的`rand_gen()`函数，该函数随机生成数据并返回数据，在`Moniter.ets`中该函数被调用。对应的可以在`data_collector.ets`中编写函数返回收集到的数据，在`Moniter.ets`中调用。数据中主要包括4个key-value对，4个键值分别为heart_beat（心率）, oximetry（血氧）, temperature（温度）, icon_color（图标颜色）
 
 ### 距离刷新率
 
