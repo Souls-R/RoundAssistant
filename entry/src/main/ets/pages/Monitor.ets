@@ -1,6 +1,7 @@
 import distributedDataObject from '@ohos.data.distributedDataObject'
 import { monitor_id,modifier, icon_color } from  '../util/constant'
 import gatt_server from '../model/gattserver'
+import {rand_gen} from '../model/data_collector'
 
 let self
 let localObject:distributedDataObject.DataObject
@@ -21,19 +22,8 @@ struct Monitor {
   //   return color
   // }
 
-  rand_gen(){
-    // 60~70
-    let new_heart_beat = (60 + Math.random() * 10 + modifier.heart_beat).toFixed(0)
-    // 0.95~0.96
-    let new_oximetry = (0.95 + Math.random() * 0.01 + modifier.oximetry).toFixed(2)
-    // 36.1~36.3
-    let new_temperature = (36.1 + Math.random() * 0.2 + modifier.temperature).toFixed(1)
-    let new_data = {
-      heart_beat: new_heart_beat,
-      oximetry: new_oximetry,
-      temperature: new_temperature,
-      icon_color: icon_color
-    }
+  data_collect(){
+    let new_data=rand_gen();
     self.monitor_info = new_data
     localObject['data'] = new_data
   }
@@ -58,8 +48,8 @@ struct Monitor {
     // 设备1加入sessionId
     let sessionId = monitor_id
     localObject.setSessionId(sessionId)
-    //定时生成模拟数据
-    setInterval(this.rand_gen, 600)
+    //定时获取数据，此处为采集模拟数据
+    setInterval(this.data_collect, 600)
     //开启广播
     this.my_gatt_server.start_gatt_server()
 
@@ -150,7 +140,7 @@ struct Monitor {
           .fontSize(8)
           .fontWeight(FontWeight.Bold)
           .onClick(() => {
-            this.rand_gen()
+            // this.rand_gen()
           })
         }
 
