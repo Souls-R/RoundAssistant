@@ -15,6 +15,7 @@
 import distributedDataObject from '@ohos.data.distributedDataObject'
 import ble_scanner from  '../model/blescanner'
 import Logger from '../util/Logger'
+import web_webview from '@ohos.web.webview';
 
 let debounce_timer = null
 let TAG = 'rounder'
@@ -30,10 +31,12 @@ struct Rounder {
   @State cur_target:string = ''
   @State fill_color:number = 0xff0000
   @State locale_str:Object = { device_id:'sync_device_id', heart_beat:'heart_beat', oximetry:'oximetry', temperature:'temperature' };
+  @State chart_visibility:Visibility=Visibility.None;
   private ble_scanner:ble_scanner = new ble_scanner()
   private max_id:string = ''
   private last_max_id:string = ''
   private remoteObject
+  private webviewController: web_webview.WebviewController = new web_webview.WebviewController();
 
   async aboutToAppear() {
     let context = getContext(this) as any
@@ -41,7 +44,7 @@ struct Rounder {
     this.locale_str['sync_device_id']=context.resourceManager.getStringSync($r('app.string.sync_device_id'))
     this.locale_str['heart_beat']=context.resourceManager.getStringSync($r('app.string.heart_beat'))
     this.locale_str['temperature']=context.resourceManager.getStringSync($r('app.string.temperature'))
-    this.locale_str['oximetry']=context.resourceManager.getStringSync($r('app.string.oximetry'))
+    this.locale_str['oximetry']=context.resourceManager.getStringSync($r('app.string.oximetry'))  
     // 和设备1协同的设备2加入同一个session
     // let sessionId = '1'
     // 创建对象，该对象包含4个属性类型：string、number、boolean和Object
@@ -57,6 +60,8 @@ struct Rounder {
         changeData.forEach(element => {
           this.rounder_info=this.remoteObject[element]
           this.fill_color=this.rounder_info['icon_color']
+          let temp_heart_beat:string= this.rounder_info['heart_beat'].toString()
+          this.webviewController.runJavaScript('push_data(' + temp_heart_beat + ')')
           // Logger.debug('color'+this.fill_color)
           // console.info("changed !" + element + " " + JSON.stringify(remoteObject[element]))
         })
@@ -114,6 +119,10 @@ struct Rounder {
   changeSession() {
     if(this.cur_target == '') {
       Logger.debug('truly changed to' + this.max_id)
+      try {
+        this.webviewController.runJavaScript('clean_data()')
+      }
+      catch (e){}
       this.cur_target = this.max_id
       this.remoteObject.setSessionId(String(this.cur_target))
     }
@@ -122,6 +131,10 @@ struct Rounder {
     }
     this.cur_target = this.max_id
     Logger.debug('truly changed to' + this.max_id)
+    try {
+      this.webviewController.runJavaScript('clean_data()')
+    }
+    catch (e){}
     this.remoteObject.setSessionId()
     this.remoteObject.setSessionId(String(this.cur_target))
   }
@@ -142,6 +155,10 @@ struct Rounder {
         //   .width(55).height(51)
       }
       Divider()
+
+      //图表
+        Web({ src: $rawfile("chart.html"), controller: this.webviewController})
+        .height('40%').width('100%').visibility(this.chart_visibility)
       // 设备
       Row(){
         Image($r('app.media.ic_monitor'))
@@ -170,10 +187,22 @@ struct Rounder {
         Text(`${this.locale_str['heart_beat']} :  ${this.rounder_info['heart_beat']} bpm`)
           .fontSize(25)
           .margin({ left: 32 })
+
+        Image($r('app.media.ic_chart'))
+          .width(32).height(32).margin({left:50})
+
       }.height('16%').width('90%')
       .margin({top:16})
       .borderRadius(12)
       .shadow({radius:16,color:0x20000000})
+      .onClick(() => {
+        if(this.chart_visibility==Visibility.None){
+          this.chart_visibility=Visibility.Visible
+        }
+        else{
+          this.chart_visibility=Visibility.None
+        }
+      })
       // 血氧
       Row(){
         Image($r('app.media.ic_oximetry'))

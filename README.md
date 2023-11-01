@@ -20,7 +20,7 @@ hap安装包见仓库发行版界面[`RoundAssistant 发行版`](https://gitee.c
 
 ## 图片预览
 
-<img src="README.assets/欢迎界面_zh.jpeg" alt="欢迎_zh" style="zoom:25%;" /><img src="README.assets/医生端_zh.jpeg" alt="医生端_zh" style="zoom:25%;" /><img src="README.assets/设备管理_zh.jpeg" alt="设备管理_zh" style="zoom:25%;" />
+<img src="README.assets/欢迎界面_zh.jpeg" alt="欢迎_zh" style="zoom:25%;" /><img src="README.assets/医生端_zh.jpeg" alt="医生端_zh" style="zoom:25%;" /><img src="README.assets/医生端_zh_chart.jpeg" alt="医生端_zh_chart" style="zoom:25%;" /><img src="README.assets/设备管理_zh.jpeg" alt="设备管理_zh" style="zoom:25%;" />
 
 
 ## 概要说明
@@ -200,7 +200,7 @@ hap安装包见仓库发行版界面[`RoundAssistant 发行版`](https://gitee.c
 本应用界面便于用户交互，有以下特点：
 
 - **简明易懂：** 系统提供了简单直观的操作界面，使用户能够快速上手并轻松使用应用。界面布局清晰，功能按钮和菜单应有明确的标识和描述，以便用户能够准确理解和使用各项功能。
-- **可视化：** 应用提供便于操作的UI界面，能直观的便于用户查看，同时在切换设备时，应用能够切换显示图标颜色提示用户当前设备的改变。
+- **可视化：** 应用提供便于操作的UI界面，提供折线图功能方便查阅数据，能直观的便于用户查看，同时在切换设备时，应用能够切换显示图标颜色提示用户当前设备的改变。
 - **实时刷新：** 使用ArkTS语言的`@State`装饰器以及低延迟的数据同步，应用能够实时获取和更新病人的生理数据，并在界面上进行实时刷新。当病人的数据发生变化时，系统应立即更新相应的数据显示，以便医生能够及时获取最新的数据状态。并且实时刷新的速度较快，保证了数据的实时性和准确性。
 
 ### 防抖动设计
